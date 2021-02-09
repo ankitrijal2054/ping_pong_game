@@ -13,10 +13,14 @@ screen.bgcolor("black")
 screen.title("Pong")
 screen.tracer(0)
 
+r_paddle = Paddle(RIGHT_COR)
+l_paddle = Paddle(LEFT_COR)
+ball = Ball()
+score = Score()
+
 line = Turtle()
 line.pencolor("white")
 line.penup()
-line.hideturtle()
 line.goto(0, 300)
 line.right(90)
 for i in range(0, 60):
@@ -24,11 +28,6 @@ for i in range(0, 60):
     line.forward(5)
     line.penup()
     line.forward(5)
-
-r_paddle = Paddle(RIGHT_COR)
-l_paddle = Paddle(LEFT_COR)
-ball = Ball()
-score = Score()
 
 screen.listen()
 screen.onkey(r_paddle.up, "Up")
@@ -39,7 +38,7 @@ screen.onkey(l_paddle.down, "s")
 game_is_on = True
 
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     screen.update()
     ball.move()
 
@@ -51,16 +50,16 @@ while game_is_on:
         ball.bounce_x()
 
     # detect r_paddle missed
-    if ball.xcor() > 380 #and ball.distance(r_paddle) > 50:
+    if ball.xcor() > 380: #and ball.distance(r_paddle) > 50:
         score.increase_l_score()
-        ball.center()
+        ball.reset_ball()
         ball.bounce_x()
         time.sleep(1)
 
     # detect l_paddle missed
-    if ball.xcor() < -380 #and ball.distance(r_paddle) > 50:
+    if ball.xcor() < -380: #and ball.distance(r_paddle) > 50:
         score.increase_r_score()
-        ball.center()
+        ball.reset_ball()
         ball.bounce_x()
         time.sleep(1)
 
