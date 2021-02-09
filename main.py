@@ -1,16 +1,24 @@
-# This is a sample Python script.
+RIGHT_COR = (375, 0)
+LEFT_COR = (-375, 0)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from turtle import Screen, Turtle
+from paddle import Paddle
 
+screen = Screen()
+screen.setup(800, 600)
+screen.bgcolor("black")
+screen.title("Pong")
+screen.tracer(0)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+r_paddle = Paddle(RIGHT_COR)
+l_paddle = Paddle(LEFT_COR)
 
+game_is_on = True
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+while game_is_on:
+    screen.listen()
+    screen.onkey(r_paddle.up, "Up")
+    screen.onkey(r_paddle.down, "Down")
+    screen.update()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+screen.exitonclick()
