@@ -24,3 +24,5 @@ class Ball(Turtle):
         if self.ycor() > 280 or self.ycor() < -280:
             self.bounce_y()
 
+    def center(self):
+        self.goto(0, 0)
